@@ -14,41 +14,29 @@ import statistics
 sns.set(color_codes = True)
 
 def gibbs(N = 50000, thin = 1000, B = 5):
-    mat = numpy.empty((N  +1,3,))
+    mat = numpy.empty((N  +1,3,)) #create an empty numpy matrix
+    B=5 #assigning upper bound
+    x = numpy.random.uniform(0,B) #pick x randomly from 0 to 5
+    y = numpy.random.uniform(0,B) #pick y randomly from 0 to 5
+    mat[0,0] = 0 #setting an iteration number equal to 0 for starting values
+    mat[0,1] = x #storing starting value x in matrix
+    mat[0,2] = y #storing starting value y in  matrix
     
-    x = B/2
-    y = B/2
-    mat[0,0] = 0
-    mat[0,1] = x
-    mat[0,2] = y
-    
-    for i in range(1,N + 1):
+    for i in range(1,N + 1): 
        
-        u1 = random.uniform(0,1)
-        alpha = (1 - math.exp(-B*y))
-        newx = -(1/y)*math.log(1-u1*alpha)
+        u1 = random.uniform(0,1) #draw an u value that will be used in inverse sampling
+        newx = -(1/y)*math.log(1-u1*(1 - math.exp(-B*y))) #inverse CDF of x that was calculated manually before
         
-        x = newx
+        x = newx #assign calculated newx as x
         
-        u2  = random.uniform(0,1)
-        beta = (1 - math.exp(-B*x))
-        newy = -(1/x)*math.log(1-u2*beta)
+        u2  = random.uniform(0,1) #draw an u value that will be used in inverse sampling
+        newy = -(1/x)*math.log(1-u2*(1 - math.exp(-B*x))) #inverse CDF of y that was calculated manually before
         
-        y = newy
+        y = newy #assign calculated newy as y
         
-        mat[i,0] = i
-        mat[i,1] = newx
-        mat[i,2] = newy
-    seq = mat[:,0]
-    xs = mat[:,1]
-    ys = mat[:,2]
-    
+        mat[i,0] = i #number row
+        mat[i,1] = newx #store newx in a matrix in row i
+        mat[i,2] = newy #store newy in a matrix in row i
+ 
     mat = numpy.matrix(mat)
-    return(mat)
-
-
-# In[ ]:
-
-
-
-
+    return(mat) #return numpy matrix, where first column is iteration number, second is x and third in y
