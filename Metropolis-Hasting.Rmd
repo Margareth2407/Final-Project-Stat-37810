@@ -1,25 +1,40 @@
 ---
-title: "Untitled"
-author: "Margarita Orlova"
+title: "Metropolis Hastings Function"
+author: "Margarita Orlova, Kenneth Ruiter, Patrick Walker"
 date: "October 28, 2018"
 output: html_document
 ---
 
 ```{r}
-Metropolis <- function(c,iteration){ #Setting starting value, constant c and number of iteration
-  fi=runif(1,0,1)
-  chain = array(dim=c(iteration+1,1))
-  chain[1] = fi
-  for (i in 1:iteration){
-    proposal = rbeta(1,c*chain[i],c*(1-chain[i]))
+Metropolis <- function(c,iteration){ #Setting constant c and number of iteration
+  
+  if(c <= 0){stop("Input c must be greater than 0")} #prevents nonsensical user inputs
+  
+  if(iteration <= 0){stop("Input iterations must be greater than 0")} #prevents nonsensical user inputs
+  
+  fi=runif(1,0,1) #starting value for "Phi"
+    
+  chain = array(dim=c(iteration+1,1)) #initialzing array
+  
+  chain[1] = fi #putting initial value into chain
+  
+  for (i in 1:iteration){ #for loop for each iteration of the chain
+    
+    proposal = rbeta(1,c*chain[i],c*(1-chain[i])) #selects a random draw from the beta distribution using parameter from chain as the proposal value
+    
     acceptance_ratio = (dbeta(proposal,6,4)/dbeta(proposal,c*chain[i],c*(1-chain[i])))/(dbeta(chain[i],6,4)/dbeta(chain[i],c*proposal,c*(1-proposal)))
+       #the probability of acceptance, acceptance ratio has been corrected for asymmetry of jumping function
     if (runif(1) < acceptance_ratio){
+       #this combined if/else statment accepts the proposal if the acceptance ratio is greater than a random draw from the uniform function.
       chain[i+1,] = proposal}
+    
     else{
+      
       chain[i+1,] = chain[i,]
+      
       }
   }
-  return(chain)
+  return(chain) #done
 }
 
 x <- Metropolis(1,10000)
@@ -27,18 +42,5 @@ x <- Metropolis(1,10000)
 ```
 
 
-```{r}
-fi=0.5
-c=1
-start_value = rbeta(1,c*fi,c*(1-fi))
-chain = array(dim=c(2,1))
-acceptance_ratio=(dbeta(start_value,6,4)/dbeta(start_value,c*fi,c*(1-fi)))/(dbeta(fi,6,4)/dbeta(fi,c*start_value,c*(1-start_value)))
-if (runif(1) < acceptance_ratio){
-            chain[i+2,] = proposal
-        }else{
-            chain[i+1,] = chain[i,]
-start_value
-acceptance_ratio
 
-```
 
