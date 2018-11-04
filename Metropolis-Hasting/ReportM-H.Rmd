@@ -2,7 +2,7 @@
 title: "Report"
 author: "Margarita, Orlova, Kenneth Ruiter, Patrick Walker"
 date: "November 3, 2018"
-output: html_document #pdf_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
