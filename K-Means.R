@@ -31,31 +31,28 @@ cluster <- function(data){ #declare function
   return(list(means, mindistances)) #returns means and mindistances
 }
 
-sort_cluster <- function(datums){
-
-results <- cluster(datums) #runs function defined above
-
-
-
-a <- results[[2]][1,2] #creates a dummy variable "a" to first type of cluster
-b <- results[[2]][min(which(results[[2]][,2] != a)),2]
-#creates a dummy variable "b" to second type of cluster
-c <- 6 - a - b 
-#creates a dummy variable "c" to third type of cluster
-
-#the below block reassings the 1s and 2s to -1s and -2s in order to 
-#better compare with the established clustering that was removed from the data set
-results[[2]][results[[2]][,2] == a,2] <- -1
-results[[2]][results[[2]][,2] == b,2] <- -2
-results[[2]][results[[2]][,2] == c,2] <- 3
-results[[2]][results[[2]][,2] == -1,2] <- 1
-results[[2]][results[[2]][,2] == -2,2] <- 2
-
-return(results) #returns results
-
-}
-
-results <- sort_cluster(mywine) 
+results <- cluster(mywine) 
 plotcluster(mywine, results[[2]][,2]) #plots clusters
-sum(wine[,1] == results[[2]][,2]) #checks to what degree our code and the
-#previous clustering actually agree
+
+require(data.table)
+type_1 <-setkey(data.table((wine_cluster[wine_cluster$Type == 1,2:14])))
+type_2 <-setkey(data.table((wine_cluster[wine_cluster$Type == 2,2:14])))
+type_3 <-setkey(data.table((wine_cluster[wine_cluster$Type == 3,2:14])))
+cluster_1 <-setkey(data.table((wine_cluster[wine_cluster$clusters == 1,2:14])))
+cluster_2 <-setkey(data.table((wine_cluster[wine_cluster$clusters == 2,2:14])))
+cluster_3 <-setkey(data.table((wine_cluster[wine_cluster$clusters == 3,2:14])))
+cluster1_type1<-na.omit(cluster_1[type_1,which=TRUE])
+cluster1_type2<-na.omit(cluster_1[type_2,which=TRUE])
+cluster1_type3<-na.omit(cluster_1[type_3,which=TRUE])
+cluster2_type1<-na.omit(cluster_2[type_1,which=TRUE])
+cluster2_type2<-na.omit(cluster_2[type_2,which=TRUE])
+cluster2_type3<-na.omit(cluster_2[type_3,which=TRUE])
+cluster3_type1<-na.omit(cluster_3[type_1,which=TRUE])
+cluster3_type2<-na.omit(cluster_3[type_2,which=TRUE])
+cluster3_type3<-na.omit(cluster_3[type_3,which=TRUE])
+
+method<-c(length(cluster1_type1),length(cluster1_type2),length(cluster1_type3),length(cluster2_type1),length(cluster2_type2),length(cluster2_type3),length(cluster3_type1),length(cluster3_type2),length(cluster3_type3))
+matrix<-matrix(method,nrow = 3,ncol = 3, byrow=TRUE)
+colnames(matrix) <- c("Type 1","Type 2","Type 3")
+rownames(matrix) <- c("Cluster 1","Cluster 2","Cluster 3")
+matrix
