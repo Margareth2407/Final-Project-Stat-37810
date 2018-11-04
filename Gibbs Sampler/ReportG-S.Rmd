@@ -77,3 +77,6 @@ def gibbs(N = 50000, thin = 1000, B = 5):
     return(mat) #return numpy matrix, where first column is iteration number,
                 #second is x and third in y
 ```
+
+## Results
+
