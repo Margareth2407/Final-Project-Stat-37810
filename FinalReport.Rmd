@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \newpage
 # Metropolis-Hastings
 
-In this part of the report, we will use the Metro-polis Hastings algorithm to draw samples from a Beta distribution $\phi$, with parameters $(6,4)$. Of course, this is usually not necessary as most languages are already able to draw from a Beta distribution, but this way we are able to compare our results easily with the actual distribution. However, before we start, we will describe the algorithm itself.
+In this part of the report, we will use the Metropolis-Hastings algorithm to draw samples from a Beta distribution $\phi$, with parameters $(6,4)$. Of course, this is usually not necessary as most languages are already able to draw from a Beta distribution, but this way we are able to compare our results easily with the actual distribution. However, before we start, we will describe the algorithm itself.
 
 ## Algorihm Description
 
