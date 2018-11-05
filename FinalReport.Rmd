@@ -459,7 +459,7 @@ As we see, cluster 1 mostly consist of type 1 wine, with only one type 2 wine. C
 
 ##K-means for scaled data
 
-Using the same code, we use scaled data this time. We will not define our function again and use code above. The function returns clusters with 51, 61 and 66 observations. As we see from the plot, scaling the data improves clustering a lot. After scaling observation can be distinctly grouped with clear borders between clusters. 
+Using the same code, we use scaled data this time. We will not define our function again and use code above. The function returns clusters with 62, 51 and 65 observations. As we see from the plot, scaling the data improves clustering a lot. After scaling observation can be distinctly grouped with clear borders between clusters. 
 
 ```{r, echo=TRUE}
 data(wine) #scale data
