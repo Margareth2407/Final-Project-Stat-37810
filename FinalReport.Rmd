@@ -76,7 +76,7 @@ draws <- Metropolis(c,iterations)
 
 par(mfrow = c(1,3))
 plot(draws)
-acf(draws)
+acf(draws, main = "Plots for c = 1")
 hist(draws, freq = FALSE, main = "")
 lines(seq(0,1,0.01),dbeta(seq(0,1,0.01),6,4))
 ```
@@ -101,7 +101,7 @@ print(ks.test(draws,"pbeta",6,4))
 draws <- Metropolis(c,iterations)
 print(ks.test(draws,"pbeta",6,4))
 
-drawsfinal <- Metropolis(c,iterations)
+draws <- Metropolis(c,iterations)
 print(ks.test(draws,"pbeta",6,4))
 
 trials1 <- rbeta(1000, 0.1, 0.9)
@@ -123,10 +123,11 @@ The histogram looks about comparable to the beta function plot, although we do t
 
 c <- 2.5
 iterations <- 10000
+drawsfinal <- Metropolis(c,iterations)
 
 par(mfrow = c(1,3))
 plot(drawsfinal)
-acf(drawsfinal)
+acf(drawsfinal, main = "Plots for c = 2.5")
 hist(drawsfinal, freq = FALSE, main = "")
 lines(seq(0,1,0.01),dbeta(seq(0,1,0.01),6,4))
 
@@ -142,7 +143,7 @@ print(ks.test(draws,"pbeta",6,4))
 draws <- Metropolis(c,iterations)
 print(ks.test(draws,"pbeta",6,4))
 
-drawsfinal <- Metropolis(c,iterations)
+draws <- Metropolis(c,iterations)
 print(ks.test(draws,"pbeta",6,4))
 
 ```
@@ -162,10 +163,11 @@ The histogram doesn't seem to have quite the same peak that the c = 1 histogram 
 
 c <- 10
 iterations <- 10000
+drawsfinal <- Metropolis(c,iterations)
 
 par(mfrow = c(1,3))
 plot(drawsfinal)
-acf(drawsfinal)
+acf(drawsfinal, main = "Plots for c = 10")
 hist(drawsfinal, freq = FALSE, main = "")
 lines(seq(0,1,0.01),dbeta(seq(0,1,0.01),6,4))
 
@@ -181,7 +183,7 @@ print(ks.test(draws,"pbeta",6,4))
 draws <- Metropolis(c,iterations)
 print(ks.test(draws,"pbeta",6,4))
 
-drawsfinal <- Metropolis(c,iterations)
+draws <- Metropolis(c,iterations)
 print(ks.test(draws,"pbeta",6,4))
 
 
@@ -199,10 +201,11 @@ The autocorrelation plots look similar to those for c = 1 and c = 2.5.
 
 c <- 0.1
 iterations <- 10000
+drawsfinal <- Metropolis(c,iterations)
 
 par(mfrow = c(1,3))
 plot(drawsfinal)
-acf(drawsfinal)
+acf(drawsfinal, main = "Plots for c = 0.1")
 hist(drawsfinal, freq = FALSE, main = "")
 lines(seq(0,1,0.01),dbeta(seq(0,1,0.01),6,4))
 
@@ -218,7 +221,7 @@ print(ks.test(draws,"pbeta",6,4))
 draws <- Metropolis(c,iterations)
 print(ks.test(draws,"pbeta",6,4))
 
-drawsfinal <- Metropolis(c,iterations)
+draws <- Metropolis(c,iterations)
 print(ks.test(draws,"pbeta",6,4))
 
 ```
