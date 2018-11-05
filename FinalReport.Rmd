@@ -1,7 +1,7 @@
 ---
 title: "Final Report"
 author: "Margarita Orlova, Kenneth Ruiter, Patrick Walker"
-date: "November 4, 2018"
+date: "November 5, 2018"
 output: pdf_document
 ---
 
