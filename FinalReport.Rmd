@@ -64,6 +64,7 @@ Metropolis <- function(c,iteration){ #Setting constant c and number of iteration
 ```
 
 ## Results
+### c = 1
 
 Now that the algorithm itself has been discussed, we will run the function with $c = 1$ and $10,000$ total iterations. We will not discard any initial samples, which is sometimes done to prevent bias introduced by the starting value. The following plots show the results.
 
@@ -116,6 +117,8 @@ The autocorrelation plot converges to 0 relatively quickly, but it is difficult 
 
 The histogram looks about comparable to the beta function plot, although we do tend to see a slightly higher peak, as discussed above. Again, unless the histogram is very bad, it is difficult to make inferences.
 
+### c = 2.5
+
 ```{r, KStest2.5}
 
 c <- 2.5
@@ -153,6 +156,7 @@ Again, we have difficulty inferring anything from the autocorrelation plot beyon
 
 The histogram doesn't seem to have quite the same peak that the c = 1 histogram had.
 
+### c = 10
 
 ```{r, KStest10}
 
@@ -188,6 +192,8 @@ Now, with c = 10, we see another step closer to convergence of the variation. We
 The trace plot of c = 10, is the best we've seen so far. Namely, that we've seen good coverage of the area with an almost uniform black bar. We can also infer from this that there is relatively limited chains of the exact same value in the data, although the areas has become to dark to easily examine this. However, if we go significantly higher values of c, we would see a very narrow band of black, representing the limited variance and limited exploration of the sample space. This would also be unideal.
 
 The autocorrelation plots look similar to those for c = 1 and c = 2.5.
+
+### c = 0.1
 
 ```{r, KStest0.1}
 
