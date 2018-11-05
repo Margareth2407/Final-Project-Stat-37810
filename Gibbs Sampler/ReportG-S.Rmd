@@ -80,3 +80,34 @@ def gibbs(N = 50000, thin = 1000, B = 5):
 
 ## Results
 
+For the following results, we use that $B=5$, and create histograms of values for $x$, for a various amount of iterations $T$.
+
+![png](Chart for 500.png){width=200px}![png](Chart for 5000.png){width=200px}![png](Chart for 50000.png){width=200px}
+
+To create these plots, the following code was used.
+
+```{r, eval=FALSE, echo=TRUE}
+trials = gibbs(500) #Example for 500 iterations. 
+  #Other plots are created using 5000 and 50000 iterations
+plt.pyplot.hist(trials[:,1],bins = 50) #Create histogram
+plt.pyplot.title('500 draws') #Add title
+plt.pyplot.xlabel('Bins') #Add label on x-axis
+plt.pyplot.ylabel('Counts') #Add label on y-axis
+```
+
+As we can see from the three plots shown above, the density of $x$ seems to have a similar shape for all amounts of iterations, where more iterations result in a smoother empirical density. Remember that the values of $x$ will always be in between $0$ and $B=5$, so these histograms show all values of $x$. Now aside from an estimation of the marginal densities found by the histograms, we can also use Gibbs sampling to find estimates for the moments of these marginal densities. For example, we know that the sample average is an unbiased and consistent estimator for the first moment of $X$, $\mathbb{E}_{p(X)}[X]$. We can simply take the mean of all $x$-values that are given in the output to find this sample average. The following code was used.
+
+```{r, eval=FALSE, echo=TRUE}
+statistics.mean(numpy.asarray(trials)[:,1]) 
+  #The same trials were used for creating the histograms,
+  #so the following averages correspond with these histograms.
+  #Again, this is only the example for 500 iterations.
+```
+
+The estimates for the first moments are then given below.
+\begin{itemize}
+  \item $500$ iterations: $\mathbb{E}_{p(X)}[X] \approx 1.2841215406495794$
+  \item $5000$ iterations: $\mathbb{E}_{p(X)}[X] \approx 1.2586229563432523$
+  \item $50000$ iterations: $\mathbb{E}_{p(X)}[X] \approx 1.2697125546442287$
+\end{itemize}
+
