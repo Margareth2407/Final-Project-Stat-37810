@@ -473,7 +473,7 @@ sum(results[[2]][,2] == 3)
 plotcluster(mywine, results[[2]][,2]) #plots clusters
 ```
 
-Our method for checking quality of the clustering also shows improvement over unscaled data.  For example, cluster 2 fully consist of type 2 wine. Cluster 1 became assosiated with type 3 wine with only 3 observations of type 2. Cluster 2 attributes type 1 wine with only 2 wrongly clustered obseration. 
+Our method for checking quality of the clustering also shows improvement over unscaled data.  For example, cluster 2 fully consist of type 2 wine. Cluster 1 became assosiated with type 1 wine with only 3 observations of type 2. Cluster 2 attributes type 3 wine with only 3 wrongly clustered obseration. 
 Thus, after scaling the data, the k-means cluster algorithm wrongly classifies only 5 rows which is 3% of the total dataset.
  
 ```{r, echo=FALSE}
